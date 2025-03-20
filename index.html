@@ -1,0 +1,784 @@
+function generateSoulUrgeDescription(soulUrge1, soulUrge2, score) {
+                let description = `Soul Urge ${soulUrge1} and ${soulUrge2} `;
+                
+                // High compatibility
+                if (score >= 85) {
+                    description += `create a profound emotional and desire-based connection. At the heart level, you understand what motivates each other, creating a deeply satisfying resonance in your inner worlds.`;
+                } 
+                // Medium-high compatibility
+                else if (score >= 70) {
+                    description += `share compatible inner desires and emotional needs. While not identical, your heart-level motivations complement each other in harmonious ways.`;
+                }
+                // Medium compatibility
+                else if (score >= 50) {
+                    description += `have different emotional needs and inner motivations, which can create both interesting dynamics and occasional misalignment. Understanding these differences consciously will be important.`;
+                }
+                // Lower compatibility
+                else {
+                    description += `represent quite different internal desires and emotional landscapes. This requires extra attention to truly understand what fulfills each other at the soul level.`;
+                }
+                
+                // Generate strengths and challenges
+                let strengths = [];
+                let challenges = [];
+                
+                // Same Soul Urge
+                if (soulUrge1 === soulUrge2) {
+                    strengths.push(`Deeply understand each other's core emotional needs and desires`);
+                    strengths.push(`Natural resonance in what brings heart-level fulfillment`);
+                    challenges.push(`May amplify each other's emotional patterns, including negative ones`);
+                    challenges.push(`Potential lack of emotional balance or perspective`);
+                } 
+                // Material/security-focused (4, 8)
+                else if (
+                    (soulUrge1 === 4 || soulUrge1 === 8) && 
+                    (soulUrge2 === 4 || soulUrge2 === 8)
+                ) {
+                    strengths.push(`Shared desire for stability and security`);
+                    strengths.push(`Mutual understanding of practical emotional needs`);
+                    challenges.push(`May focus too heavily on material concerns`);
+                    challenges.push(`Potential difficulty expressing deeper emotions`);
+                }
+                // Relationship/harmony-focused (2, 6, 9)
+                else if (
+                    (soulUrge1 === 2 || soulUrge1 === 6 || soulUrge1 === 9) && 
+                    (soulUrge2 === 2 || soulUrge2 === 6 || soulUrge2 === 9)
+                ) {
+                    strengths.push(`Deep emotional sensitivity and awareness of each other's feelings`);
+                    strengths.push(`Shared desire for harmony and meaningful relationships`);
+                    challenges.push(`May avoid necessary conflict to maintain harmony`);
+                    challenges.push(`Potential for emotional dependency or boundary issues`);
+                }
+                // Freedom/experience-focused (1, 5)
+                else if (
+                    (soulUrge1 === 1 || soulUrge1 === 5) && 
+                    (soulUrge2 === 1 || soulUrge2 === 5)
+                ) {
+                    strengths.push(`Mutual respect for emotional independence and space`);
+                    strengths.push(`Shared desire for new experiences and growth`);
+                    challenges.push(`May struggle with deep emotional commitment`);
+                    challenges.push(`Potential for restlessness in the relationship`);
+                }
+                // Spiritual/wisdom-focused (7, 11, 33)
+                else if (
+                    (soulUrge1 === 7 || soulUrge1 === 11 || soulUrge1 === 33) && 
+                    (soulUrge2 === 7 || soulUrge2 === 11 || soulUrge2 === 33)
+                ) {
+                    strengths.push(`Deep spiritual and intellectual connection`);
+                    strengths.push(`Shared desire for truth, wisdom, and higher understanding`);
+                    challenges.push(`May intellectualize emotions rather than feeling them`);
+                    challenges.push(`Potential for emotional distance or detachment`);
+                }
+                // Mixed combinations
+                else {
+                    strengths.push(`Complementary emotional needs that can balance each other`);
+                    strengths.push(`Opportunity to learn from different approaches to fulfillment`);
+                    challenges.push(`May need to consciously acknowledge different emotional languages`);
+                    challenges.push(`Different priorities in what brings heart-level satisfaction`);
+                }
+                
+                return {
+                    description: description,
+                    strengths: strengths,
+                    challenges: challenges
+                };
+            }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Numerology Compatibility Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #2E294E;
+            --primary-purple: #4B3F72;
+            --primary-gold: #FFD700;
+            --accent-lavender: #B2A4D4;
+            --accent-silver: #C0C0C0;
+            --accent-white: #F5F5F5;
+            --accent-teal: #40E0D0;
+            --accent-pink: #FF69B4;
+            --accent-blue: #00BFFF;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-purple));
+            color: var(--accent-white);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary-gold), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            color: var(--accent-lavender);
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+        }
+
+        button {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: var(--accent-teal);
+            transform: translateY(-2px);
+        }
+
+        .compatibility-tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+            color: var(--accent-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: auto;
+            margin-top: 0;
+        }
+
+        .tab-button.active {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        .results-section {
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .compatibility-score {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: var(--primary-gold);
+        }
+
+        .compatibility-bar {
+            height: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            margin: 1rem 0 2rem;
+            overflow: hidden;
+        }
+
+        .compatibility-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-teal), var(--primary-gold));
+            border-radius: 0.75rem;
+            transition: width 1s ease-in-out;
+        }
+
+        .compatibility-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .strength, .challenge {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .strength:before, .challenge:before {
+            content: "✓";
+            color: var(--accent-teal);
+            position: absolute;
+            left: 0;
+        }
+
+        .challenge:before {
+            content: "!";
+            color: var(--accent-pink);
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 1rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-lavender), transparent);
+            margin: 2rem 0;
+        }
+
+        .numerology-tip {
+            background: rgba(64, 224, 208, 0.1);
+            border-left: 3px solid var(--accent-teal);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced Numerology Compatibility Calculator</h1>
+            <h2>Discover the deeper dynamics of your relationships</h2>
+        </header>
+
+        <div class="card">
+            <div class="form-grid">
+                <div class="form-section">
+                    <div class="section-title">Person 1</div>
+                    <div class="form-group">
+                        <label for="person1-name">Full Birth Name</label>
+                        <input type="text" id="person1-name" placeholder="Enter full birth name">
+                    </div>
+                    <div class="form-group">
+                        <label for="person1-month">Birth Month</label>
+                        <select id="person1-month">
+                            <option value="">Select Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="person1-day">Birth Day</label>
+                        <input type="number" id="person1-day" min="1" max="31" placeholder="Day">
+                    </div>
+                    <div class="form-group">
+                        <label for="person1-year">Birth Year</label>
+                        <input type="number" id="person1-year" min="1900" max="2100" placeholder="Year">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-title">Person 2</div>
+                    <div class="form-group">
+                        <label for="person2-name">Full Birth Name</label>
+                        <input type="text" id="person2-name" placeholder="Enter full birth name">
+                    </div>
+                    <div class="form-group">
+                        <label for="person2-month">Birth Month</label>
+                        <select id="person2-month">
+                            <option value="">Select Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="person2-day">Birth Day</label>
+                        <input type="number" id="person2-day" min="1" max="31" placeholder="Day">
+                    </div>
+                    <div class="form-group">
+                        <label for="person2-year">Birth Year</label>
+                        <input type="number" id="person2-year" min="1900" max="2100" placeholder="Year">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="relationship-type">Relationship Type</label>
+                <select id="relationship-type">
+                    <option value="romantic">Romantic Partnership</option>
+                    <option value="friendship">Friendship</option>
+                    <option value="business">Business/Career</option>
+                    <option value="family">Family</option>
+                    <option value="mentor">Mentor/Student</option>
+                </select>
+            </div>
+
+            <button id="calculate-btn">Calculate Compatibility</button>
+        </div>
+
+        <div id="results" class="card hidden">
+            <h2>Your Compatibility Results</h2>
+
+            <div class="numerology-tip">
+                <strong>Numerology Insight:</strong> Compatibility in numerology goes beyond simple matching. Even challenging number combinations can create powerful growth opportunities when approached consciously.
+            </div>
+
+            <div class="compatibility-tabs">
+                <button class="tab-button active" data-tab="overview">Overview</button>
+                <button class="tab-button" data-tab="life-path">Life Path</button>
+                <button class="tab-button" data-tab="expression">Expression/Destiny</button>
+                <button class="tab-button" data-tab="soul-urge">Soul Urge</button>
+                <button class="tab-button" data-tab="specific">Specific Compatibility</button>
+            </div>
+
+            <div class="results-section active" id="overview-results">
+                <div class="compatibility-score" id="overall-score">0%</div>
+                <div class="compatibility-bar">
+                    <div class="compatibility-fill" id="overall-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Overall Compatibility</h3>
+                    <p class="compatibility-description" id="overall-description"></p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <h4>Core Numbers</h4>
+                    <div class="form-grid">
+                        <div>
+                            <p><strong>Person 1:</strong></p>
+                            <p>Life Path: <span id="person1-life-path"></span></p>
+                            <p>Expression: <span id="person1-expression"></span></p>
+                            <p>Soul Urge: <span id="person1-soul-urge"></span></p>
+                        </div>
+                        <div>
+                            <p><strong>Person 2:</strong></p>
+                            <p>Life Path: <span id="person2-life-path"></span></p>
+                            <p>Expression: <span id="person2-expression"></span></p>
+                            <p>Soul Urge: <span id="person2-soul-urge"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section" id="life-path-results">
+                <div class="compatibility-score" id="life-path-score">0%</div>
+                <div class="compatibility-bar">
+                    <div class="compatibility-fill" id="life-path-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Life Path Compatibility</h3>
+                    <p class="compatibility-description" id="life-path-description"></p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <h4>Life Path Dynamics</h4>
+                    <div class="strength" id="life-path-strength-1"></div>
+                    <div class="strength" id="life-path-strength-2"></div>
+                    <div class="challenge" id="life-path-challenge-1"></div>
+                    <div class="challenge" id="life-path-challenge-2"></div>
+                </div>
+            </div>
+
+            <div class="results-section" id="expression-results">
+                <div class="compatibility-score" id="expression-score">0%</div>
+                <div class="compatibility-bar">
+                    <div class="compatibility-fill" id="expression-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Expression/Destiny Compatibility</h3>
+                    <p class="compatibility-description" id="expression-description"></p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <h4>Communication & Purpose Dynamics</h4>
+                    <div class="strength" id="expression-strength-1"></div>
+                    <div class="strength" id="expression-strength-2"></div>
+                    <div class="challenge" id="expression-challenge-1"></div>
+                    <div class="challenge" id="expression-challenge-2"></div>
+                </div>
+            </div>
+
+            <div class="results-section" id="soul-urge-results">
+                <div class="compatibility-score" id="soul-urge-score">0%</div>
+                <div class="compatibility-bar">
+                    <div class="compatibility-fill" id="soul-urge-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Soul Urge Compatibility</h3>
+                    <p class="compatibility-description" id="soul-urge-description"></p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <h4>Emotional & Desire Dynamics</h4>
+                    <div class="strength" id="soul-urge-strength-1"></div>
+                    <div class="strength" id="soul-urge-strength-2"></div>
+                    <div class="challenge" id="soul-urge-challenge-1"></div>
+                    <div class="challenge" id="soul-urge-challenge-2"></div>
+                </div>
+            </div>
+
+            <div class="results-section" id="specific-results">
+                <div class="compatibility-score" id="specific-score">0%</div>
+                <div class="compatibility-bar">
+                    <div class="compatibility-fill" id="specific-bar" style="width: 0%"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3 id="specific-title">Specific Compatibility</h3>
+                    <p class="compatibility-description" id="specific-description"></p>
+                    
+                    <div class="section-divider"></div>
+                    
+                    <h4 id="specific-subheading">Key Dynamics</h4>
+                    <div class="strength" id="specific-strength-1"></div>
+                    <div class="strength" id="specific-strength-2"></div>
+                    <div class="challenge" id="specific-challenge-1"></div>
+                    <div class="challenge" id="specific-challenge-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pythagorean number-letter chart
+            const letterValues = {
+                'a': 1, 'j': 1, 's': 1,
+                'b': 2, 'k': 2, 't': 2,
+                'c': 3, 'l': 3, 'u': 3,
+                'd': 4, 'm': 4, 'v': 4,
+                'e': 5, 'n': 5, 'w': 5,
+                'f': 6, 'o': 6, 'x': 6,
+                'g': 7, 'p': 7, 'y': 7,
+                'h': 8, 'q': 8, 'z': 8,
+                'i': 9, 'r': 9
+            };
+
+            // Tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const resultSections = document.querySelectorAll('.results-section');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    
+                    // Update active tab button
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show appropriate results section
+                    resultSections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === `${tabName}-results`) {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Calculate button click handler
+            document.getElementById('calculate-btn').addEventListener('click', function() {
+                // Get input values
+                const person1 = {
+                    name: document.getElementById('person1-name').value,
+                    month: parseInt(document.getElementById('person1-month').value) || 0,
+                    day: parseInt(document.getElementById('person1-day').value) || 0,
+                    year: parseInt(document.getElementById('person1-year').value) || 0
+                };
+
+                const person2 = {
+                    name: document.getElementById('person2-name').value,
+                    month: parseInt(document.getElementById('person2-month').value) || 0,
+                    day: parseInt(document.getElementById('person2-day').value) || 0,
+                    year: parseInt(document.getElementById('person2-year').value) || 0
+                };
+
+                const relationshipType = document.getElementById('relationship-type').value;
+
+                // Validate inputs
+                if (!validateInputs(person1, person2)) {
+                    alert('Please fill out all fields for both people.');
+                    return;
+                }
+
+                // Calculate core numbers
+                const p1Numbers = calculateCoreNumbers(person1);
+                const p2Numbers = calculateCoreNumbers(person2);
+
+                // Calculate compatibility scores
+                const results = calculateCompatibility(p1Numbers, p2Numbers, relationshipType);
+
+                // Display results
+                displayResults(p1Numbers, p2Numbers, results, relationshipType);
+                
+                // Show results section
+                document.getElementById('results').classList.remove('hidden');
+                
+                // Scroll to results
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            function validateInputs(person1, person2) {
+                // Check if all required fields are filled
+                if (
+                    !person1.name || !person1.month || !person1.day || !person1.year ||
+                    !person2.name || !person2.month || !person2.day || !person2.year
+                ) {
+                    return false;
+                }
+                return true;
+            }
+
+            function calculateCoreNumbers(person) {
+                // Calculate Life Path Number
+                const reducedMonth = reduceNumber(person.month);
+                const reducedDay = reduceNumber(person.day);
+                const reducedYear = reduceNumber(person.year);
+                let lifePath = reduceNumber(reducedMonth + reducedDay + reducedYear);
+                
+                // Keep master numbers
+                if (lifePath === 11 || lifePath === 22 || lifePath === 33) {
+                    lifePath = lifePath;
+                }
+
+                // Calculate Expression/Destiny Number
+                const expressionNumber = calculateExpression(person.name);
+
+                // Calculate Soul Urge Number
+                const soulUrge = calculateSoulUrge(person.name);
+
+                return {
+                    lifePath: lifePath,
+                    expression: expressionNumber,
+                    soulUrge: soulUrge
+                };
+            }
+
+            function reduceNumber(num) {
+                // Special case for master numbers
+                if (num === 11 || num === 22 || num === 33) {
+                    return num;
+                }
+                
+                // Reduce to single digit
+                while (num > 9) {
+                    num = String(num).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+                }
+                
+                return num;
+            }
+
+            function calculateExpression(name) {
+                // Remove any non-alphabetic characters and convert to lowercase
+                const cleanName = name.toLowerCase().replace(/[^a-z]/g, '');
+                
+                // Calculate sum of all letters
+                let sum = 0;
+                for (let i = 0; i < cleanName.length; i++) {
+                    const letter = cleanName[i];
+                    if (letterValues[letter]) {
+                        sum += letterValues[letter];
+                    }
+                }
+                
+                // Reduce to single digit or master number
+                const expressionNumber = reduceNumber(sum);
+                
+                return expressionNumber;
+            }
+
+            function calculateSoulUrge(name) {
+                // Remove any non-alphabetic characters and convert to lowercase
+                const cleanName = name.toLowerCase().replace(/[^a-z]/g, '');
+                
+                // Calculate sum of vowels
+                let sum = 0;
+                const vowels = ['a', 'e', 'i', 'o', 'u'];
+                
+                for (let i = 0; i < cleanName.length; i++) {
+                    const letter = cleanName[i];
+                    if (vowels.includes(letter) && letterValues[letter]) {
+                        sum += letterValues[letter];
+                    }
+                }
+                
+                // Reduce to single digit or master number
+                const soulUrgeNumber = reduceNumber(sum);
+                
+                return soulUrgeNumber;
+            }
+
+            function calculateCompatibility(p1Numbers, p2Numbers, relationshipType) {
+                // Calculate Life Path compatibility
+                const lifePathScore = calculateLifePathCompatibility(p1Numbers.lifePath, p2Numbers.lifePath);
+                
+                // Calculate Expression compatibility
+                const expressionScore = calculateExpressionCompatibility(p1Numbers.expression, p2Numbers.expression);
+                
+                // Calculate Soul Urge compatibility
+                const soulUrgeScore = calculateSoulUrgeCompatibility(p1Numbers.soulUrge, p2Numbers.soulUrge);
+                
+                // Calculate relationship-specific compatibility
+                const specificScore = calculateSpecificCompatibility(p1Numbers, p2Numbers, relationshipType);
+                
+                // Calculate overall score with appropriate weighting
+                let overallScore;
+                
+                switch(relationshipType) {
+                    case 'romantic':
+                        overallScore = Math.round((lifePathScore * 0.3) + (expressionScore * 0.2) + (soulUrgeScore * 0.3) + (specificScore * 0.2));
+                        break;
+                    case 'friendship':
+                        overallScore = Math.round((lifePathScore * 0.25) + (expressionScore * 0.25) + (soulUrgeScore * 0.3) + (specificScore * 0.2));
+                        break;
+                    case 'business':
+                        overallScore = Math.round((lifePathScore * 0.2) + (expressionScore * 0.3) + (soulUrgeScore * 0.1) + (specificScore * 0.4));
+                        break;
+                    case 'family':
+                        overallScore = Math.round((lifePathScore * 0.4) + (expressionScore * 0.2) + (soulUrgeScore * 0.2) + (specificScore * 0.2));
+                        break;
+                    case 'mentor':
+                        overallScore = Math.round((lifePathScore * 0.3) + (expressionScore * 0.4) + (soulUrgeScore * 0.1) + (specificScore * 0.2));
+                        break;
+                    default:
+                        overallScore = Math.round((lifePathScore + expressionScore + soulUrgeScore + specificScore) / 4);
+                }
+                
+                return {
+                    lifePathScore: lifePathScore,
+                    expressionScore: expressionScore,
+                    soulUrgeScore: soulUrgeScore,
+                    specificScore: specificScore,
+                    overallScore: overallScore,
+                    descriptions: generateDescriptions(p1Numbers, p2Numbers, relationshipType, lifePathScore, expressionScore, soulUrgeScore, specificScore)
+                };
+            }
+
+            function calculateLifePathCompatibility(lifePath1, lifePath2) {
+                // Define compatibility matrix based on Life Path numbers
+                const compatibilityMatrix = {
+                    1: { 1: 70, 2: 60, 3: 80, 4: 50, 5: 90, 6: 65, 7: 85, 8: 70, 9: 75, 11: 90, 22: 85, 33: 80 },
+                    2: { 1: 60, 2: 75, 3: 65, 4: 90, 5: 55, 6: 85, 7: 60, 8: 80, 9: 70, 11: 85, 22: 70, 33: 90 },
+                    3: { 1: 80, 2: 65, 3: 85, 4: 60, 5: 80, 6: 90, 7: 70, 8: 55, 9: 95, 11: 80, 22: 75, 33: 90 },
+                    4: { 1: 50, 2: 90, 3: 60, 4: 75, 5: 65, 6: 70, 7: 55, 8: 90, 9: 60, 11: 65, 22: 90, 33: 75 },
+                    5: { 1: 90, 2: 55, 3: 80, 4: 65, 5: 85, 6: 50, 7: 80, 8: 75, 9: 70, 11: 75, 22: 70, 33: 65 },
+                    6: { 1: 65, 2: 85, 3: 90, 4: 70, 5: 50, 6: 80, 7: 65, 8: 60, 9: 90, 11: 75, 22: 80, 33: 95 },
+                    7: { 1: 85, 2: 60, 3: 70, 4: 55, 5: 80, 6: 65, 7: 90, 8: 75, 9: 65, 11: 90, 22: 75, 33: 80 },
+                    8: { 1: 70, 2: 80, 3: 55, 4: 90, 5: 75, 6: 60, 7: 75, 8: 85, 9: 50, 11: 70, 22: 95, 33: 65 },
+                    9: { 1: 75, 2: 70, 3: 95, 4: 60, 5: 70, 6: 90, 7: 65, 8: 50, 9: 85, 11: 85, 22: 70, 33: 90 },
+                    11: { 1: 90, 2: 85, 3: 80, 4: 65, 5: 75, 6: 75, 7: 90, 8: 70, 9: 85, 11: 95, 22: 90, 33: 95 },
+                    22: { 1: 85, 2: 70, 3: 75, 4: 90, 5: 70, 6: 80, 7: 75, 8: 95, 9: 70, 11: 90, 22: 90, 33: 90 },
+                    33: { 1: 80, 2: 90, 3: 90, 4: 75, 5: 65, 6: 95, 7: 80, 8: 65, 9: 90, 11: 95, 22: 90, 33: 95 }
+                };
+                
+                // Return compatibility score
+                if (compatibilityMatrix[lifePath1] && compatibilityMatrix[lifePath1][lifePath2]) {
+                    return compatibilityMatrix[lifePath1][lifePath2];
+                } else if (compatibilityMatrix[lifePath2] && compatibilityMatrix[lifePath2][lifePath1]) {
+                    return compatibilityMatrix[lifePath2][lifePath1];
+                } else {
+                    // Default compatibility if not found in matrix
+                    return 70;
+                }
